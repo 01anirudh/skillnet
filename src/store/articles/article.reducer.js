@@ -1,4 +1,4 @@
-import { SET_LOADING_STATUS, GET_ARTICLES } from "./article.types";
+import { SET_LOADING_STATUS, GET_ARTICLES,SET_UPLOAD_PROGRESS } from "./article.types";
 
 export const initialState = {
 	loading: false,
