@@ -18,6 +18,12 @@ function articleReducer(state = initialState, action) {
 				...state,
 				loading: action.status,
 			};
+		case SET_UPLOAD_PROGRESS:
+			return {
+				...state,
+				uploadProgress: action.payload,
+			};
+
 		default:
 			return state;
 	}

@@ -1,6 +1,6 @@
 import {  storage , db}  from "../../firebaseConfig"; // Update the import path
 import { collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc } from "firebase/firestore"; // Update the import paths
-import { SET_LOADING_STATUS ,GET_ARTICLES } from "./article.types";
+import { SET_LOADING_STATUS ,GET_ARTICLES,SET_UPLOAD_PROGRESS } from "./article.types";
 
 
 export function getArticles(payload, id) {
