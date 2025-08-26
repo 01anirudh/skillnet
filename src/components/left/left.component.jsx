@@ -30,7 +30,7 @@ function Left(props) {
               <img src="/images/widget-icon.svg" alt="" />
             </a>
           </Widget>
-          <Item>
+          <Item href="#">
             <span>
               <img src="/images/item-icon.svg" alt="" />
               My Items
