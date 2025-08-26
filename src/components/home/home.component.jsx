@@ -22,10 +22,7 @@ function Home(props) {
 		<Container>
 			<Content>
 				<Section>
-					<h5>
-						<a>Hiring in a hurray..?</a>
-					</h5>
-					<p>- Find talented pros in record time with LinkedIn and keep business moving.</p>
+					<p>Find talented pros in record time with SkillNet and keep business moving.</p>
 				</Section>
 				<Layout>
 					<Left />

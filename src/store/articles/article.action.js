@@ -19,86 +19,73 @@ export function setLoading(status) {
 }
 
 export function postArticleAPI(payload) {
-	return async (dispatch) => {
-		dispatch(setLoading(true));
+  return async (dispatch) => {
+    dispatch(setLoading(true));
 
-		const store = collection(db, "articles");
+    const store = collection(db, "articles");
 
-		if (payload.image !== "") {
-			const upload = storage.ref(`images/${payload.image.name}`).put(payload.image);
-			upload.on(
-				"state_changed",
-				(snapshot) => {
-					const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-					// Update progress if needed
-				},
-				(err) => {
-					alert(err.message);
-					dispatch(setLoading(false));
-				},
-				async () => {
-					const downloadURL = await upload.snapshot.ref.getDownloadURL();
-					const articleData = {
-						actor: {
-							description: payload.user.email,
-							title: payload.user.displayName,
-							date: payload.timestamp,
-							image: payload.user.photoURL,
-						},
-						video: payload.video,
-						sharedImg: downloadURL,
-						likes: {
-							count: 0,
-							whoLiked: [],
-						},
-						comments: 0,
-						description: payload.description,
-					};
-					await addDoc(store, articleData);
-					dispatch(setLoading(false));
-				}
-			);
-		} else if (payload.video) {
-			const articleData = {
-				actor: {
-					description: payload.user.email,
-					title: payload.user.displayName,
-					date: payload.timestamp,
-					image: payload.user.photoURL,
-				},
-				video: payload.video,
-				sharedImg: "",
-				likes: {
-					count: 0,
-					whoLiked: [],
-				},
-				comments: 0,
-				description: payload.description,
-			};
-			await addDoc(store, articleData);
-			dispatch(setLoading(false));
-		} else {
-			const articleData = {
-				actor: {
-					description: payload.user.email,
-					title: payload.user.displayName,
-					date: payload.timestamp,
-					image: payload.user.photoURL,
-				},
-				video: "",
-				sharedImg: "",
-				likes: {
-					count: 0,
-					whoLiked: [],
-				},
-				comments: 0,
-				description: payload.description,
-			};
-			await addDoc(store, articleData);
-			dispatch(setLoading(false));
-		}
-	};
+    if (payload.image !== "") {
+      const upload = storage
+        .ref(`user_uploads/${payload.user.uid}/${payload.image.name}`)
+        .put(payload.image);
+
+      upload.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // Optionally track progress
+        },
+        (err) => {
+          alert(err.message);
+          dispatch(setLoading(false));
+        },
+        async () => {
+          const downloadURL = await upload.snapshot.ref.getDownloadURL();
+          const articleData = {
+            actor: {
+              uid: payload.user.uid,  // ✅ store user ID
+              description: payload.user.email,
+              title: payload.user.displayName,
+              date: payload.timestamp,
+              image: payload.user.photoURL,
+            },
+            video: payload.video,
+            sharedImg: downloadURL,
+            likes: {
+              count: 0,
+              whoLiked: [],
+            },
+            comments: 0,
+            description: payload.description,
+          };
+          await addDoc(store, articleData);
+          dispatch(setLoading(false));
+        }
+      );
+    } else {
+      const articleData = {
+        actor: {
+          uid: payload.user.uid,  // ✅ store user ID
+          description: payload.user.email,
+          title: payload.user.displayName,
+          date: payload.timestamp,
+          image: payload.user.photoURL,
+        },
+        video: payload.video || "",
+        sharedImg: "",
+        likes: {
+          count: 0,
+          whoLiked: [],
+        },
+        comments: 0,
+        description: payload.description,
+      };
+      await addDoc(store, articleData);
+      dispatch(setLoading(false));
+    }
+  };
 }
+
 
 export function getArticlesAPI() {
 	return (dispatch) => {
