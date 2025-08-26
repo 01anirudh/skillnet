@@ -11,18 +11,18 @@ function Left(props) {
         <ArtCard>
           <UserInfo>
             <CardBackground />
-            <a>
+            <a href='#'>
       <StyleSheetManager shouldForwardProp={(prop) => prop !== 'photourl'}>
               <Photo photourl={photoUrl} />
       </StyleSheetManager>
               <Link>Welcome, {props.user ? props.user.displayName : 'there'}!</Link>
             </a>
-            <a>
+            <a href='#'>
               <AddPhotoText>Add a photo</AddPhotoText>
             </a>
           </UserInfo>
           <Widget>
-            <a>
+            <a href='#'>
               <div>
                 <span>Connections</span>
                 <span>Grow Your Network</span>
@@ -38,19 +38,19 @@ function Left(props) {
           </Item>
         </ArtCard>
       <CommunityCard>
-        <a>
+        <a href='#'>
           <span>Groups</span>
         </a>
-        <a>
+        <a href='#'>
           <span>
             Events
             <img src="/images/plus-icon.svg" alt="" />
           </span>
         </a>
-        <a>
+        <a href='#'>
           <span>Follow Hashtags</span>
         </a>
-        <a>
+        <a href='#'>
           <span>Discover More</span>
         </a>
       </CommunityCard>

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
-import { getAuth, GoogleAuthProvider,onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider} from "firebase/auth";
 import { getFirestore,setDoc,getDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 

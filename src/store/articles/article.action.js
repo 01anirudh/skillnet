@@ -33,6 +33,7 @@ export function postArticleAPI(payload) {
         "state_changed",
         (snapshot) => {
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		  dispatch(setUploadProgress(progress));
           // Optionally track progress
         },
         (err) => {
@@ -108,8 +109,16 @@ export function getArticlesAPI() {
 	};
 }
 
+export function setUploadProgress(progress) {
+  return {
+    type: SET_UPLOAD_PROGRESS,
+    progress,
+  };
+}
+
+
 export function updateArticleAPI(payload) {
-	return async (dispatch) => {
+	return async () => {
 		const articleRef = doc(db, "articles", payload.id);
 		await updateDoc(articleRef, payload.update);
 	};

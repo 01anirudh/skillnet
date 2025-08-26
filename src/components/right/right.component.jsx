@@ -30,7 +30,7 @@ function Right() {
 						</div>
 					</li>
 				</FeedList>
-				<Recommendation>
+				<Recommendation href="#">
 					View all recommendation
 					<img src="/images/right-icon.svg" alt="" />
 				</Recommendation>
