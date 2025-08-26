@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ArtCard, UserInfo, CardBackground, Photo, Link, AddPhotoText, Container, Widget, Item, CommunityCard } from './left.styles';
+import { ArtCard, UserInfo, CardBackground, Photo, Link, AddPhotoText, Container, Widget, Item, CommunityCard } from './left.styles.jsx';
 import { StyleSheetManager } from 'styled-components';
 
 function Left(props) {
